@@ -36,6 +36,13 @@ header > div {
   padding: 38px;
 }
 
+.header_spans:hover {
+  transition: all .05s ease;
+  transform: scale(1.1);
+  opacity: 0.9;
+  cursor: pointer;
+}
+
 .card-block {
   display: -ms-flexbox;
   display: -webkit-flex;
@@ -84,6 +91,12 @@ header > div {
   border-radius: 20px;
 }
 
+.item:hover {
+  transition: all .05s ease;
+  transform: scale(1.02);
+  cursor: pointer;
+}
+
 .item > img {
   display: block;
   padding: 0 45px;
@@ -123,10 +136,24 @@ item-cost {
   text-align: center;
   padding: 13.5px 0px;
   border-radius: 6px;
+  border: none;
   background-color: #f37655;
   color: black;
   margin-left: calc((100% - 330px)/2);
+  transition: all .05s ease;
 }
+
+.btn:hover {
+  opacity: 0.95;
+  transform: scale(1.02);
+  cursor: pointer;
+}
+
+.btn:active {
+  opacity: 1;
+  transform: scale(0.98);
+}
+
 
 .feedbacks {
   display: inline-block;
