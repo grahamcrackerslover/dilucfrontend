@@ -63,7 +63,7 @@
         <div style="font-size: 24px; margin-top: 20px;">Положительных: 1293</div>
         <div style="font-size: 24px; margin-top: 20px;">Отрицательных: 123</div>
         <div style="font-size: 24px; text-align: center; margin-top: 50px; margin-bottom: 25px;">Оставьте свой отзыв - мы будем вам очень благодарны!</div>
-        <btn>Оставить отзыв</btn>
+        <btn @click="modals.showModal('review')">Оставить отзыв</btn>
       </stats>
     </div>
 </template>
@@ -77,13 +77,22 @@ import Feedback from './Feedback.vue';
 import Feedbacks from './Feedbacks.vue';
 import Btn from './Btn.vue';
 import Stats from './Stats.vue';
+import {modalStore} from "@/store/modal";
 
 export default {
-components: {
+  components: {
     Feedback,
     Feedbacks,
     Btn,
     Stats,
-},
+  },
+  methods: {
+
+  },
+  data() {
+    return {
+        modals: modalStore()
+    }
+  }
 }
 </script>
