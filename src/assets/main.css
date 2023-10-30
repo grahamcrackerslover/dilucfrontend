@@ -1,0 +1,241 @@
+body {
+  background-color: rgb(18, 18, 18);
+}
+
+.main {
+  padding: 0px 68.5px;
+}
+
+header {
+  width: 100%;
+  height: 156px;
+  
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+}
+
+
+.logo {
+  width: 257px;
+  height: 45px;
+}
+
+header > div {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.header_spans {
+  font-size: 32px;
+  color: #F37655;
+  padding: 38px;
+}
+
+.card-block {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 50px;
+  padding-bottom: 68px;
+}
+
+.card {
+  padding: 41px;
+  background-color: rgb(13, 13, 13);
+  border-radius: 25px 0px 25px 0px;
+}
+
+.card_header {
+  display: block;
+  text-align: center;
+  font-size: 32px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.card_info {
+  display: block;
+  text-align: center;
+  font-size: 24px;
+  color: white;
+}
+
+.items-block {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: 35px;
+}
+
+.item {
+  width: 320px;
+  height: 400px;
+  background-color: rgb(13, 13, 13);
+  border-radius: 20px;
+}
+
+.item > img {
+  display: block;
+  padding: 0 45px;
+  width: 230px;
+  height: 274px;
+}
+
+item-name {
+  display: block;
+  margin-top: 17px;
+  height: 54px;
+  text-align: center;
+  font-size: 24px;
+  color: white;
+}
+
+item-cost {
+  display: block;
+  text-align: center;
+  font-size: 36px;
+  color: white;
+}
+
+
+.feedback-block {
+  display: flex;
+  gap: 50px;
+  width: 100%;
+  color: white;
+}
+
+.btn {
+  display: block;
+  width: 330px;
+  /* height: 27px; */
+  font-size: 24px;
+  text-align: center;
+  padding: 13.5px 0px;
+  border-radius: 6px;
+  background-color: #f37655;
+  color: black;
+  margin-left: calc((100% - 330px)/2);
+}
+
+.feedbacks {
+  display: inline-block;
+  width: calc(100% - 450px)
+}
+
+.feedback {
+  display: block;
+  background-color: rgb(13, 13, 13);
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.stats {
+  display: inline-block;
+  background-color: rgb(13, 13, 13);
+  width: 330px;
+  height: 454px;
+  padding: 0px 60px;
+}
+
+.about-text {
+  display: block;
+  color: white;
+  font-size: 32px;
+  width: 1500px;
+  padding: 0px calc((100% - 1500px) / 2);
+  text-align: center;
+}
+
+.about-header {
+  display: block;
+  color: white;
+  font-size: 32px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+
+.feedback > div {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+name {
+  display: inline-block;
+  width: 40%
+}
+
+datetime {
+  display: inline-block;
+  width: 30%
+}
+
+.feedback > div > img {
+  display: inline;
+  margin-left: calc(25% - 40px);
+}
+
+@media screen and (max-width: 1637px) {
+  .about-text {
+      width: 100%;
+      padding: 0px 0px
+  }
+}
+
+@media screen and (max-width: 1148px) {
+  header {
+      margin-top: 20px;
+      flex-direction: column;
+      justify-content: center;
+  }
+
+  header > div {
+      justify-content: center;
+  }
+
+  .card-block {
+      align-items: center;
+      flex-direction: column;
+  }
+
+  .card {
+      height: auto;
+      width: 100%;
+  }
+
+  .feedback-block {
+      align-items: center;
+      flex-direction: column-reverse;
+  }
+
+  .feedbacks {
+      display: inline-block;
+      width: 450px;
+  }
+}
+
+footer {
+  font-size: 32px;
+  color: white;
+  padding: 25px;
+  background-color: rgb(31, 31, 31);
+}
+footer > .logo {
+  display: block;
+  padding: 0px 0px 15px 0px;
+}
