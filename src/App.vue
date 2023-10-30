@@ -1,4 +1,5 @@
 <template>
+  <Modal/>
   <div class="main">
     <HeaderComponent />
     <CardBlock />
@@ -27,6 +28,7 @@ import ItemBlock from './components/ItemBlock.vue';
 import FeedbackBlock from './components/FeedbackBlock.vue';
 import AboutBlock from './components/AboutBlock.vue';
 import Footer from './components/Footer.vue';
+import Modal from "@/components/Modal.vue";
 
 export default {
     name: 'App',
@@ -37,6 +39,11 @@ export default {
     FeedbackBlock,
     AboutBlock,
     Footer,
+    Modal,
   }
 }
 </script>
+
+
+<style>
+</style>
