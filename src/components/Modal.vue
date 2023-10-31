@@ -20,8 +20,9 @@
                 <div class="modal-content_body">
                     <div class="review">
                         <textarea v-model="reviewText" placeholder="Текст отзыва"/>
+                        <textarea style="min-width:70px; min-height:10px;height:10%;width:30%;" v-model="codeText" placeholder="Ваш код для отзыва"/>
                     </div>
-                    <btn>Отправить</btn>
+                    <btn @click="send_review(reviewText, codeText)">Отправить</btn>
                 </div>
             </div>
         </div>
@@ -40,6 +41,17 @@ export default {
     data() {
         return {
             modalStores: modalStore(),
+            reviewText: "",
+            codeText: ""
+        }
+    },
+    methods: {
+        send_review(text, code) {
+            axios({
+                method: "post",
+                url: SERVER_URL + `/reviews/add/`,
+                data: {review_code: code}
+            }).then(response => {this.review_code = response.data.review_code})
         }
     }
 }

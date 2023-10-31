@@ -4,7 +4,6 @@ import { SERVER_URL } from "../config";
 
 
 <template>
-    <div>{{ review_code }}</div>
     <div v-if="items[0].id == -1">
         Loading...
     </div>
@@ -44,7 +43,6 @@ export default {
                 image: "",
                 price: 0,
             }],
-            review_code: null
         }
     },
     mounted() {
@@ -52,8 +50,12 @@ export default {
     },
     methods: {
         buyItem(id: Number) {
-            api.post(`/shop/buy/`, {item_id: id}).then(response => {this.review_code = response.data.review_code})
-            router.push(`success?review_code=${this.review_code}`)
+            axios({
+                method: "post",
+                url: SERVER_URL + `/shop/buy/`,
+                data: {item_id: id}
+            }).then(response => {router.push(`success?review_code=${response.data.review_code}`)})
+            .catch(response => {alert("Oops, something went wrong.")})
         }
     }
 }
