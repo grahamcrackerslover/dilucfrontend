@@ -20,14 +20,15 @@
                 <div class="modal-content_body">
                     <div class="review">
                         <textarea v-model="reviewText" placeholder="Текст отзыва"/>
-                        <textarea style="min-width:70px; min-height:10px;height:10%;width:30%;" v-model="codeText" placeholder="Ваш код для отзыва"/>
+                        <input style="min-width:140px; min-height:10px;height:10%;width:40%; background-color: gray; border-width: 1px; border-color: whitesmoke; border-radius: 5px;" v-model="codeText" placeholder="Ваш код для отзыва"/><br/>
+                        <input style="min-width:140px; min-height:10px;height:10%;width:40%; background-color: gray; border-width: 1px; border-color: whitesmoke; border-radius: 5px;" v-model="nameText" placeholder="Ваше имя"/><br/>
                         <input style="color: white;" type="radio" id="yes" name="yes" value="yes" v-model="radioCheck" />
                         <label style="color: white;" for="yes">Позитивный</label><br />
                         <input style="color: white;" type="radio" id="no" name="no" value="no" v-model="radioCheck" />
                         <label style="color: white;" for="no">Негативный</label><br />
                     </div>
-                    <btn @click="send_review(reviewText, codeText, radioCheck === 'Позитивный')">Отправить</btn>
                 </div>
+                <btn @click="send_review(nameText, reviewText, codeText, radioCheck === 'Позитивный')">Отправить</btn>
             </div>
         </div>
     </Transition>
@@ -49,16 +50,25 @@ export default {
             modalStores: modalStore(),
             reviewText: null,
             codeText: null,
+            nameText: null,
             radioCheck: null,
         }
     },
     methods: {
-        send_review(text, code, positive) {
+        send_review(name, content, code_used, is_positive) {
             axios({
                 method: "post",
                 url: SERVER_URL + `/reviews/add/`,
-                data: {review_code: code, content: text, is_positive: positive}
-            }).then(alert("Готово!"))
+                data: {name, code_used, content, is_positive}
+            })
+            .then((r) => {
+                if (r.status != 201) {
+                    alert("Что-то пошло не так...")
+                } else {
+                    alert("Успешно!");
+                    this.modalStores.hideModal("review")
+                }
+            })
         }
     }
 }

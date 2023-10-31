@@ -5,11 +5,11 @@
           <p>{{reviews_text}}</p>
         </div>
         <feedback v-for="review in reviews">
-          <template v-slot:name>Имя Фамилия</template>
-          <template v-slot:datetime>31.12.2023 23:59:59</template>
-          <img src="./imgs/good.svg">
+          <template v-slot:name>{{ review.name }}</template>
+          <template v-slot:datetime>{{ review.created_at.toString() }}</template>
+          <img :src="review.is_positive? './imgs/good.svg' : './imgs/bad.svg'">
           <template v-slot:feedback-text>
-            velit sed ullamcorper morbi tincidunt ornare ...
+            {{ review.content }}
           </template>
         </feedback>
       </feedbacks>
@@ -59,7 +59,7 @@ export default {
     }
   },
   mounted() {
-     api.get("reviews/get/").then((response) => {this.reviews = response.data}).catch((r) => {r.response.status === 404? this.reviews_text="Отзывов пока нет!" : this.reviews_text="Произошла ошибка в подгрузке отзывов..."})
+     api.get("reviews/get/").then((response) => {this.reviews = response.data.reviews}).catch((r) => {r.response.status === 404? this.reviews_text="Отзывов пока нет!" : this.reviews_text="Произошла ошибка в подгрузке отзывов..."})
      api.get("reviews/stats/").then((response) => {this.positive_reviews = response.data.positive_reviews; this.negative_reviews = response.data.negative_reviews}).catch((r) => {this.stats_text="Произошла ошибка в подгрузке статистики..."})
   }
 }
