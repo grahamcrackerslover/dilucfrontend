@@ -1,12 +1,18 @@
+<script lang="ts" setup>
+import { SERVER_URL } from "../config";
+</script>
+
+
 <template>
+    <div>{{ console.log(SERVER_URL) }}</div>
     <div class="items-block">
-      <item
-        v-for="(item, index) in items"
-        :key="index"
-        :item-name="item.name"
-        :item-image-src="item.imageSrc"
-        :item-cost="item.cost"
-      ></item>
+    <item
+        v-for="item in items"
+        :key="item.id"
+        :item-name="item.title"
+        :item-image-src="SERVER_URL + item.image"
+        :item-cost="Number(item.price)"
+    ></item>
     </div>
 </template>
   
@@ -14,9 +20,9 @@
 
 </style>
   
-<script>
+<script lang="ts">
 import Item from './Item.vue';
-import itemSvg from './imgs/item.svg'
+import api from '../apiCaller';
 
 export default {
     components: {
@@ -24,59 +30,16 @@ export default {
     },
     data() {
         return {
-        items: [
-            {
-            name: 'Благословение полой луны',
-            imageSrc: itemSvg,
-            cost: '1952₸',
-            },
-            {
-            name: 'Благословение полой луны',
-            imageSrc: itemSvg,
-            cost: '1952₸',
-            },
-            {
-            name: 'Благословение полой луны',
-            imageSrc: itemSvg,
-            cost: '1952₸',
-            },
-            {
-            name: 'Благословение полой луны',
-            imageSrc: itemSvg,
-            cost: '1952₸',
-            },
-            {
-            name: 'Благословение полой луны',
-            imageSrc: itemSvg,
-            cost: '1952₸',
-            },
-            {
-            name: 'Благословение полой луны',
-            imageSrc: itemSvg,
-            cost: '1952₸',
-            },
-            {
-            name: 'Благословение полой луны',
-            imageSrc: itemSvg,
-            cost: '1952₸',
-            },
-            {
-            name: 'Благословение полой луны',
-            imageSrc: itemSvg,
-            cost: '1952₸',
-            },
-            {
-            name: 'Благословение полой луны',
-            imageSrc: itemSvg,
-            cost: '1952₸',
-            },
-            {
-            name: 'Благословение полой луны',
-            imageSrc: itemSvg,
-            cost: '1952₸',
-            },
-        ],
-        };
+            items: [{
+                id: -1,
+                title: "Loading...",
+                image: "",
+                price: 0,
+            }]
+        }
     },
+    mounted() {
+        api.get("/shop/items/").then(response => {this.items = response.data})
+    }
 }
 </script>

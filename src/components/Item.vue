@@ -15,7 +15,7 @@ export default {
     props: {
         itemName: String,
         itemImageSrc: String,
-        itemCost: String,
+        itemCost: String | Number,
     },
 }
 </script>

@@ -21,14 +21,14 @@
   </Footer>
 </template>
 
-<script>
+<script lang="ts">
 import HeaderComponent from './components/HeaderComponent.vue';
 import CardBlock from './components/CardBlock.vue';
 import ItemBlock from './components/ItemBlock.vue';
 import FeedbackBlock from './components/FeedbackBlock.vue';
 import AboutBlock from './components/AboutBlock.vue';
 import Footer from './components/Footer.vue';
-import Modal from "@/components/Modal.vue";
+import Modal from "./components/Modal.vue";
 
 export default {
     name: 'App',
