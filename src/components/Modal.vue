@@ -21,8 +21,12 @@
                     <div class="review">
                         <textarea v-model="reviewText" placeholder="Текст отзыва"/>
                         <textarea style="min-width:70px; min-height:10px;height:10%;width:30%;" v-model="codeText" placeholder="Ваш код для отзыва"/>
+                        <input style="color: white;" type="radio" id="yes" name="yes" value="yes" v-model="radioCheck" />
+                        <label style="color: white;" for="yes">Позитивный</label><br />
+                        <input style="color: white;" type="radio" id="no" name="no" value="no" v-model="radioCheck" />
+                        <label style="color: white;" for="no">Негативный</label><br />
                     </div>
-                    <btn @click="send_review(reviewText, codeText)">Отправить</btn>
+                    <btn @click="send_review(reviewText, codeText, radioCheck === 'Позитивный')">Отправить</btn>
                 </div>
             </div>
         </div>
@@ -32,6 +36,8 @@
 <script>
 import {modalStore} from '@/store/modal'; // Импортируем хранилище
 import Btn from './Btn.vue';
+import axios from "axios"
+import { SERVER_URL } from "../config";
 
 
 export default {
@@ -41,17 +47,18 @@ export default {
     data() {
         return {
             modalStores: modalStore(),
-            reviewText: "",
-            codeText: ""
+            reviewText: null,
+            codeText: null,
+            radioCheck: null,
         }
     },
     methods: {
-        send_review(text, code) {
+        send_review(text, code, positive) {
             axios({
                 method: "post",
                 url: SERVER_URL + `/reviews/add/`,
-                data: {review_code: code}
-            }).then(response => {this.review_code = response.data.review_code})
+                data: {review_code: code, content: text, is_positive: positive}
+            }).then(alert("Готово!"))
         }
     }
 }

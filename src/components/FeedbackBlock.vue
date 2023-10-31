@@ -1,6 +1,9 @@
 <template>
     <div class="feedback-block">
       <feedbacks>
+        <div v-if="reviews_text">
+          <p>{{reviews_text}}</p>
+        </div>
         <feedback v-for="review in reviews">
           <template v-slot:name>Имя Фамилия</template>
           <template v-slot:datetime>31.12.2023 23:59:59</template>
@@ -12,10 +15,13 @@
       </feedbacks>
       <stats>
         <div style="font-size: 24px; text-align: center; margin-top: 20px;">Статистика</div>
-        <div style="font-size: 24px; margin-top: 20px;">Положительных: 1293</div>
-        <div style="font-size: 24px; margin-top: 20px;">Отрицательных: 123</div>
-        <div style="font-size: 24px; text-align: center; margin-top: 50px; margin-bottom: 25px;">Оставьте свой отзыв - мы будем вам очень благодарны!</div>
-        <btn @click="modals.showModal('review')">Оставить отзыв</btn>
+        <div v-if="stats_text">{{ stats_text }}</div>
+        <div v-else>
+          <div style="font-size: 24px; margin-top: 20px;">Положительных: {{ positive_reviews }}</div>
+          <div style="font-size: 24px; margin-top: 20px;">Отрицательных: {{ negative_reviews }}</div>
+          <div style="font-size: 24px; text-align: center; margin-top: 50px; margin-bottom: 25px;">Оставьте свой отзыв - мы будем вам очень благодарны!</div>
+          <btn @click="modals.showModal('review')">Оставить отзыв</btn>
+        </div>
       </stats>
     </div>
 </template>
@@ -45,11 +51,16 @@ export default {
   data() {
     return {
         modals: modalStore(),
-        reviews: []
+        reviews: [],
+        reviews_text: "",
+        positive_reviews: 0,
+        negative_reviews: 0,
+        stats_text: "",
     }
   },
   mounted() {
-     api.get("reviews/get/").then((response) => {this.reviews = response.data})
+     api.get("reviews/get/").then((response) => {this.reviews = response.data}).catch((r) => {r.response.status === 404? this.reviews_text="Отзывов пока нет!" : this.reviews_text="Произошла ошибка в подгрузке отзывов..."})
+     api.get("reviews/stats/").then((response) => {this.positive_reviews = response.data.positive_reviews; this.negative_reviews = response.data.negative_reviews}).catch((r) => {this.stats_text="Произошла ошибка в подгрузке статистики..."})
   }
 }
 </script>
