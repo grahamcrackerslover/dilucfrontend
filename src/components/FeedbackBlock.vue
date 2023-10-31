@@ -4,14 +4,15 @@
         <div v-if="reviews_text">
           <p>{{reviews_text}}</p>
         </div>
-        <feedback v-for="review in reviews">
-          <template v-slot:name>{{ review.name }}</template>
-          <template v-slot:datetime>{{ review.created_at.toString() }}</template>
-          <img :src="review.is_positive? './imgs/good.svg' : './imgs/bad.svg'">
-          <template v-slot:feedback-text>
-            {{ review.content }}
-          </template>
-        </feedback>
+        <div v-for="review in reviews">
+          <feedback :is_positive="review.is_positive">
+            <template v-slot:name>{{ review.name }}</template>
+            <template v-slot:datetime>{{ review.created_at.toString() }}</template>
+            <template v-slot:feedback-text>
+              {{ review.content }}
+            </template>
+          </feedback>
+        </div>
       </feedbacks>
       <stats>
         <div style="font-size: 24px; text-align: center; margin-top: 20px;">Статистика</div>

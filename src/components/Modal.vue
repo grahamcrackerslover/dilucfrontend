@@ -28,7 +28,7 @@
                         <label style="color: white;" for="no">Негативный</label><br />
                     </div>
                 </div>
-                <btn @click="send_review(nameText, reviewText, codeText, radioCheck === 'Позитивный')">Отправить</btn>
+                <btn @click="send_review(nameText, reviewText, codeText, radioCheck === 'yes')">Отправить</btn>
             </div>
         </div>
     </Transition>
