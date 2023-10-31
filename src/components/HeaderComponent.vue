@@ -19,8 +19,7 @@ export default {
     name: 'HeaderComponent',
     methods: {
       scrollMeTo(refName) {
-        var element = this.$parent.$root.$refs[refName];
-        console.log(this.$parent)
+        var element = this.$parent.$refs[refName];
         var top = element.offsetTop;
 
         window.scrollTo(0, top);
