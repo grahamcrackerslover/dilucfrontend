@@ -1,60 +1,12 @@
 <template>
     <div class="feedback-block">
       <feedbacks>
-        <feedback>
+        <feedback v-for="review in reviews">
           <template v-slot:name>Имя Фамилия</template>
           <template v-slot:datetime>31.12.2023 23:59:59</template>
           <img src="./imgs/good.svg">
           <template v-slot:feedback-text>
             velit sed ullamcorper morbi tincidunt ornare ...
-          </template>
-        </feedback>
-        <feedback>
-          <template v-slot:name>Имя Фамилия</template>
-          <template v-slot:datetime>31.12.2023 23:59:59</template>
-          <img src="./imgs/good.svg">
-          <template v-slot:feedback-text>
-            velit sed ullamcorper morbi tincidunt ornare ...
-          </template>
-        </feedback>
-        <feedback>
-          <template v-slot:name>Имя Фамилия</template>
-          <template v-slot:datetime>31.12.2023 23:59:59</template>
-          <img src="./imgs/good.svg">
-          <template v-slot:feedback-text>
-            velit sed ullamcorper morbi tincidunt ornare ...
-          </template>
-        </feedback>
-        <feedback>
-          <template v-slot:name>Имя Фамилия</template>
-          <template v-slot:datetime>31.12.2023 23:59:59</template>
-          <img src="./imgs/good.svg">
-          <template v-slot:feedback-text>
-            velit sed ullamcorper morbi tincidunt ornare ...
-          </template>
-        </feedback>
-        <feedback>
-          <template v-slot:name>Имя Фамилия</template>
-          <template v-slot:datetime>31.12.2023 23:59:59</template>
-          <img src="./imgs/good.svg">
-          <template v-slot:feedback-text>
-            velit sed ullamcorper morbi tincidunt ornare ...
-          </template>
-        </feedback>
-        <feedback>
-          <template v-slot:name>Имя Фамилия</template>
-          <template v-slot:datetime>31.12.2023 23:59:59</template>
-          <img src="./imgs/good.svg">
-          <template v-slot:feedback-text>
-            velit sed ullamcorper morbi tincidunt ornare ...
-          </template>
-        </feedback>
-        <feedback>
-          <template v-slot:name>Имя Фамилия</template>
-          <template v-slot:datetime>31.12.2023 23:59:59</template>
-          <img src="./imgs/good.svg">
-          <template v-slot:feedback-text>
-            velit sed ullaигаегшщваегывorper morbimorbi morbimorbi morbimorbi morbimorbi morbimorbi morbimorbi morbimorbi morbimorbi morbimorbi morbimorbi morbimorbimorbimorbi morbimorbi morbimorbi morbimorbi morbimorbi morbimorbi morbimorbi morbimorbi morbimorbi morbimorbi morbimorbi morbimorbi morbimorbi morbimorbi  tincidunt ornare ...
           </template>
         </feedback>
       </feedbacks>
@@ -78,6 +30,7 @@ import Feedbacks from './Feedbacks.vue';
 import Btn from './Btn.vue';
 import Stats from './Stats.vue';
 import {modalStore} from "@/store/modal";
+import api from "../apiCaller"
 
 export default {
   components: {
@@ -91,8 +44,12 @@ export default {
   },
   data() {
     return {
-        modals: modalStore()
+        modals: modalStore(),
+        reviews: []
     }
+  },
+  mounted() {
+     api.get("reviews/get/").then((response) => {this.reviews = response.data})
   }
 }
 </script>
