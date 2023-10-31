@@ -29,6 +29,8 @@ import { SERVER_URL } from "../config";
 <script lang="ts">
 import Item from './Item.vue';
 import api from '../apiCaller';
+import axios from "axios";
+import router from "../router";
 
 export default {
     components: {
@@ -51,6 +53,7 @@ export default {
     methods: {
         buyItem(id: Number) {
             api.post(`/shop/buy/`, {item_id: id}).then(response => {this.review_code = response.data.review_code})
+            router.push(`success?review_code=${this.review_code}`)
         }
     }
 }
