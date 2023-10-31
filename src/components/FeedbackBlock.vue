@@ -4,7 +4,7 @@
         <div v-if="reviews_text">
           <p>{{reviews_text}}</p>
         </div>
-        <div v-for="review in reviews">
+        <div v-for="review in current_reviews">
           <feedback :is_positive="review.is_positive">
             <template v-slot:name>{{ review.name }}</template>
             <template v-slot:datetime>{{ review.created_at.toString() }}</template>
@@ -13,6 +13,7 @@
             </template>
           </feedback>
         </div>
+        <btn v-if="has_next" @click="reviews_page += 1">Подгрузить больше</btn>
       </feedbacks>
       <stats>
         <div style="font-size: 24px; text-align: center; margin-top: 20px;">Статистика</div>
@@ -52,16 +53,60 @@ export default {
   data() {
     return {
         modals: modalStore(),
-        reviews: [],
+        current_reviews: [],
+        tmp_reviews: [],
         reviews_text: "",
         positive_reviews: 0,
         negative_reviews: 0,
         stats_text: "",
+        reviews_page: 1,
+        has_next: false,
     }
   },
   mounted() {
-     api.get("reviews/get/").then((response) => {this.reviews = response.data.reviews}).catch((r) => {r.response.status === 404? this.reviews_text="Отзывов пока нет!" : this.reviews_text="Произошла ошибка в подгрузке отзывов..."})
-     api.get("reviews/stats/").then((response) => {this.positive_reviews = response.data.positive_reviews; this.negative_reviews = response.data.negative_reviews}).catch((r) => {this.stats_text="Произошла ошибка в подгрузке статистики..."})
-  }
+    api.get("reviews/stats/").then((response) => {
+        if (response.status == 200){
+          this.positive_reviews = response.data.positive_reviews
+          this.negative_reviews = response.data.negative_reviews
+        } else {
+          this.stats_text="Произошла ошибка в подгрузке статистики..."
+        }
+    })
+  },
+  created() { 
+    this.$watch("reviews_page", (newVal, oldVal) => 
+      {
+        api.get(`reviews/get/?page=${newVal}`).then((response) => {
+          if (response.status === 200) {
+            const tmp_reviews = response.data.reviews; 
+            const current_reviews = this.current_reviews.concat(tmp_reviews)
+            this.current_reviews = current_reviews
+            this.has_next = response.data.has_next
+          } else if (response.status === 404) {
+            this.reviews_text="Отзывов пока нет!"
+          } else {
+            this.reviews_text="Произошла ошибка в подгрузке отзывов..."
+          }
+        })
+      }, 
+      { 
+        immediate: true, 
+      } 
+    ); 
+/*     this.$watch(() => this.modals.isModalShown('review'), (newVal, oldVal) => 
+    {
+      api.get("reviews/stats/").then((response) => {
+        if (response.status == 200){
+          this.positive_reviews = response.data.positive_reviews
+          this.negative_reviews = response.data.negative_reviews
+        } else {
+          this.stats_text="Произошла ошибка в подгрузке статистики..."
+        }
+      })
+    }, 
+    {
+      immediate: true
+    }) */
+  }, 
 }
 </script>
