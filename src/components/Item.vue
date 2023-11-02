@@ -1,8 +1,10 @@
 <template>
     <div class="item">
       <item-name>{{ itemName }}</item-name>
-      <img :src="itemImageSrc" alt="Item Image">
-      <item-cost>{{ itemCost }}</item-cost>
+      <div class="image-wrap">
+        <img :src="itemImageSrc" alt="Item Image">
+      </div>
+      <item-cost>{{ itemCost }}₸</item-cost>
     </div>
 </template>
   
