@@ -9,15 +9,51 @@
     <div ref="about_us">
       <AboutBlock display-style="block" margin-top="200px" margin-bottom="400px">
         <!-- Insert your about text here -->
-        <p>velit sed ullamcorper morbi tincidunt ornare massa eget egestas purus viverra accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu augue ut lectus arcu bibendum at varius vel pharetra vel turpis nunc eget lorem dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida neque convallis a cras sempervelit sed ullamcorper morbi tincidunt ornare massa eget egestas purus viverra accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu augue ut lectus arcu bibendum at varius vel pharetra vel turpis nunc eget lorem dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida neque convallis a cras sempervelit sed ullamcorper morbi tincidunt ornare massa eget egestas purus viverra accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu augue ut lectus arcu bibendum at varius vel pharetra vel turpis nunc eget lorem dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida neque convallis a cras sempervelit sed ullamcorper morbi tincidunt ornare massa eget egestas purus viverra accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu augue ut lectus arcu bibendum at varius vel pharetra vel turpis nunc eget lorem dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida neque convallis a cras semper</p>
+        <div  style="text-align: left; font-size: 80%;">
+          <p>
+            Добро пожаловать в мир увлекательных приключений Genshin Impact вместе с diluc.store — вашим надежным поставщиком внутриигровых ресурсов, открывающим новые горизонты для исследования бескрайних просторов Тейвата. Мы понимаем страсть каждого искателя приключений к раскрытию всех тайн мира Genshin Impact, и именно поэтому наш магазин предлагает самые выгодные условия для пополнения ваших ресурсов.
+          </p>
+          <h4>
+            Почему diluc.store?
+          </h4>
+          <p>
+            Мы не просто магазин, мы — команда единомышленников, знающих все о Genshin Impact и жаждущих сделать вашу игру еще более захватывающей:
+          </p>
+          <ul>
+            <li><b>Лучшие цены:</b> Мы тщательно отслеживаем рынок, чтобы предложить вам самые низкие цены на Кристаллы Сотворения и Луну. И если вы найдете цену ниже — мы поднимем ставки, дав вам невероятную скидку в 50%!</li>
+            <li><b>Быстрая доставка:</b> Мы ценим ваше время, как и вы. Поэтому мы гарантируем, что ваш заказ будет доставлен на ваш аккаунт в считанные минуты после покупки.</li>
+            <li><b>Круглосуточная поддержка:</b> Наши специалисты готовы прийти на помощь 24/7. Будь то вопросы о процессе покупки, оформлении заказа или о игре — мы здесь, чтобы сделать ваш опыт непревзойденным.</li>
+          </ul>
+          <p>
+            В diluc.store мы не просто продаем валюту — мы помогаем вам воплотить в жизнь ваши игровые мечты. Присоединяйтесь к тысячам довольных искателей приключений, которые уже выбрали нас в качестве своего предпочтительного игрового ресурса. Начните свое путешествие с нами сегодня и позвольте миру Genshin Impact раскрыться во всей красе!
+          </p>
+        </div>
       </AboutBlock>
     </div>
   </div>
   <Footer>
-      <p>
-        <!-- Insert your footer text here -->
-        velit sed ullamcorper morbi tincidunt ornare massa eget egestas purus viverra accumsan in nisl nisi scelerisque eu ultrices vitae auctor eu augue ut lectus arcu bibendum at varius vel pharetra vel turpis nunc eget lorem dolor sed viverra ipsum nunc aliquet bibendum enim facilisis gravida neque convallis a cras semper
-      </p>
+      <div style="display: flex;">
+        <div>
+          <p style="font-size: 70%;">
+          Контакты:
+          <ul>
+            <li>Поддержка: <a class="email_link" href="mailto:support@diluc.store?">support@diluc.store</a></li>
+            <li>Партнерство: <a class="email_link" href="mailto:partners@diluc.store?">partners@diluc.store</a></li>
+            <li>Техподдержка: <a class="email_link" href="mailto:help@diluc.store?">help@diluc.store</a></li>
+          </ul>
+        </p>
+        </div>
+      </div>
+      <div style="text-align: center;">
+          <p style="font-size: 50%;">
+            diluc.store не аффилирован с miHoYo и Genshin Impact. Торговые марки принадлежат их соответствующим владельцам.
+          </p>
+        </div>
+      <div style="text-align: center;">
+        <p style="font-size: 50%;">
+        © 2023 diluc.store. Все права защищены.
+        </p>
+      </div>
   </Footer>
 </template>
 
@@ -46,4 +82,27 @@ export default {
 
 
 <style>
+.email_link:link {
+  color: orange;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.email_link:visited {
+  color: orange;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.email_link:hover {
+  color: rgb(255, 182, 46);
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.email_link:active {
+  color: rgb(231, 150, 0);
+  background-color: transparent;
+  text-decoration: underline;
+}
 </style>
