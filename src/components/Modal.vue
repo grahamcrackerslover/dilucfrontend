@@ -3,28 +3,27 @@
 </script>
 
 <template>
-    <Transition name="fade">
-        <div class="modal" v-if="modalStores.isModalShown('review')">
-            <div class="modal-content">
-                <div class="modal-content_top">
-                    <div class="modal-content_title">Отзыв</div>
-                    <div class="modal-content_close" v-on:click="modalStores.hideModal('review')">
+    <Transition name="blur">
+        <div class="review-blur" v-if="modalStores.isModalShown('review')">
+            <div class="review-content">
+                <div class="review-head">
+                    <div class="review-title">Отзыв</div>
+                    <div class="review-close_button" v-on:click="modalStores.hideModal('review')">
                         X
                     </div>
                 </div>
-
-                <div class="modal-content_body">
+                <div class="review-body">
                     <div class="review">
                         <div>
                           <textarea v-model="reviewText" placeholder="Текст отзыва"/>
                         </div>
                         <div>
-                        <input style="min-width:140px; min-height:10px;height:14%;width:40%; background-color: gray; border-width: 1px; border-color: whitesmoke; border-radius: 10px;" v-model="codeText" placeholder="Ваш код для отзыва"/><br/>
-                        <input style="min-width:140px; min-height:10px;height:14%;width:40%; background-color: gray; border-width: 1px; border-color: whitesmoke; border-radius: 10px;" v-model="nameText" placeholder="Ваше имя"/><br/>
-                        <input style="color: white;" type="radio" id="yes" name="yes" value="yes" v-model="radioCheck" />
-                        <label style="color: white;" for="yes">Позитивный</label><br />
-                        <input style="color: white;" type="radio" id="no" name="no" value="no" v-model="radioCheck" />
-                        <label style="color: white;" for="no">Негативный</label><br />
+                          <input style="min-width:140px; min-height:10px;height:14%;width:40%; background-color: gray; border-width: 1px; border-color: whitesmoke; border-radius: 10px;" v-model="codeText" placeholder="Ваш код для отзыва"/><br/>
+                          <input style="min-width:140px; min-height:10px;height:14%;width:40%; background-color: gray; border-width: 1px; border-color: whitesmoke; border-radius: 10px;" v-model="nameText" placeholder="Ваше имя"/><br/>
+                          <input style="color: white;" type="radio" id="yes" name="yes" value="yes" v-model="radioCheck" />
+                          <label style="color: white;" for="yes">Позитивный</label><br />
+                          <input style="color: white;" type="radio" id="no" name="no" value="no" v-model="radioCheck" />
+                          <label style="color: white;" for="no">Негативный</label><br />
                         </div>
                     </div>
                 </div>
@@ -76,7 +75,7 @@ export default {
 
 <style lang="scss" scoped>
 .review {
-    display: flex;
+  display: flex;
   textarea {
     display: flex;
     width: 100%;
@@ -104,21 +103,73 @@ export default {
       width: 100%;
     }
   }
+  &-content {
+    display: flex;
+    flex-direction: column;
+    background: black;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 25px;
+    gap: 30px;
+      overflow: hidden;
+    @media(max-width: 400px) {
+      max-width: 300px;
+      gap: 20px;
+    }
+  }
+  &-body {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+  &-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &-title {
+    display: flex;
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 41px;
+    color: white;
+    @media(max-width: 400px) {
+      font-size: 30px;
+      line-height: 38px;
+    }
+  }
+
+  &-close_button {
+    display: flex;
+    opacity: 0.2;
+    transition: opacity 0.2s ease;
+    padding: 10px;
+    cursor: pointer;
+    color: white;
+    font-size: 30px;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
 }
 
 
-.fade-enter-active,
-.fade-leave-active {
+.blur-enter-active,
+.blur-leave-active {
     transition: opacity 0.2s ease;
 }
 
-.fade-enter-from,
-.fade-leave-to {
+.blur-enter-from,
+.blur-leave-to {
   opacity: 0;
 }
 
 
-.modal {
+.review-blur {
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -135,59 +186,5 @@ export default {
   background: rgba(20, 20, 20, 0.8);
   backdrop-filter: blur(20px);
   z-index: 99;
-
-  &-content {
-    display: flex;
-    flex-direction: column;
-    background: black;
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    box-sizing: border-box;
-    padding: 25px;
-    gap: 30px;
-      overflow: hidden;
-    @media(max-width: 400px) {
-      max-width: 300px;
-      gap: 20px;
-    }
-
-    &_body {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    &_top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    &_title {
-      display: flex;
-      font-weight: 700;
-      font-size: 34px;
-      line-height: 41px;
-      color: white;
-      @media(max-width: 400px) {
-        font-size: 30px;
-        line-height: 38px;
-      }
-    }
-
-    &_close {
-      display: flex;
-      opacity: 0.2;
-      transition: opacity 0.3s ease;
-      padding: 10px;
-      cursor: pointer;
-      color: white;
-      font-size: 30px;
-
-      &:hover {
-        opacity: 0.5;
-      }
-    }
-  }
 }
 </style>
