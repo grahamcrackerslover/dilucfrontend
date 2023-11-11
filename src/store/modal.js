@@ -5,6 +5,7 @@ export const modalStore = defineStore({
     state: () => ({
         modals: {
             review: false,
+            buy_item: false,
         }
     }),
     actions: {

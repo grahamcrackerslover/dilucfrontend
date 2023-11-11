@@ -28,8 +28,8 @@ import { SERVER_URL } from "../config";
 <script lang="ts">
 import Item from './Item.vue';
 import api from '../apiCaller';
-import axios from "axios";
-import router from "../router";
+import { modalStore } from "../store/modal";
+import { itemStore } from "../store/item";
 
 export default {
     components: {
@@ -43,6 +43,8 @@ export default {
                 image: "",
                 price: 0,
             }],
+            modalStores: modalStore(),
+            itemStores: itemStore(),
         }
     },
     mounted() {
@@ -50,12 +52,8 @@ export default {
     },
     methods: {
         buyItem(id: Number) {
-            axios({
-                method: "post",
-                url: SERVER_URL + `/shop/buy/`,
-                data: {item_id: id}
-            }).then(response => {router.push(`success?review_code=${response.data.review_code}`)})
-            .catch(response => {alert("Oops, something went wrong.")})
+            this.itemStores.setItemId(id)
+            this.modalStores.showModal('buy_item')
         }
     }
 }

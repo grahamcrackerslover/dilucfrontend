@@ -1,5 +1,6 @@
 <template>
-<Modal/>
+  <ReviewModal/>
+<BuyItemModal/>
   <div class="main">
     <HeaderComponent />
     <CardBlock />
@@ -64,7 +65,8 @@ import ItemBlock from '../components/ItemBlock.vue';
 import FeedbackBlock from '../components/FeedbackBlock.vue';
 import AboutBlock from '../components/AboutBlock.vue';
 import Footer from '../components/Footer.vue';
-import Modal from "../components/Modal.vue";
+import ReviewModal from "../components/ReviewModal.vue";
+import BuyItemModal from "../components/BuyItemModal.vue";
 
 export default {
     name: 'index',
@@ -75,7 +77,8 @@ export default {
     FeedbackBlock,
     AboutBlock,
     Footer,
-    Modal,
+    ReviewModal,
+    BuyItemModal,
   }
 }
 </script>
